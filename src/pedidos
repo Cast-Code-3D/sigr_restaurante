@@ -1,1 +1,20 @@
 #pedidos y seguimiento en tiempo real
+ejemplo de codigo para pedidos
+
+@RestController
+@RequestMapping("/api/pedidos")
+public class PedidoController {
+
+    @Autowired
+    private PedidoService pedidoService;
+
+    @GetMapping
+    public List<Pedido> listarPedidos() {
+        return pedidoService.obtenerTodos();
+    }
+
+    @PostMapping
+    public Pedido crearPedido(@RequestBody Pedido pedido) {
+        return pedidoService.guardar(pedido);
+    }
+}

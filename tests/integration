@@ -1,1 +1,50 @@
 #pruebas de integración entre módulos
+codigo de ejemplo
+package tests.integration;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class PedidoCajaIntegrationTest {
+
+    static class Caja {
+
+        private double totalIngresos = 0;
+
+        public void registrarIngreso(double valor) {
+            totalIngresos += valor;
+        }
+
+        public double getTotalIngresos() {
+            return totalIngresos;
+        }
+    }
+
+    static class Pedido {
+
+        private double valor;
+
+        public Pedido(double valor) {
+            this.valor = valor;
+        }
+
+        public double getValor() {
+            return valor;
+        }
+    }
+
+    @Test
+    void registrarPedidoDebeActualizarCaja() {
+
+        Caja caja = new Caja();
+
+        Pedido pedido = new Pedido(45000);
+
+        caja.registrarIngreso(pedido.getValor());
+
+        Assertions.assertEquals(
+                45000,
+                caja.getTotalIngresos()
+        );
+    }
+}

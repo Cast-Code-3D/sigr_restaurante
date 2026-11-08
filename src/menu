@@ -1,1 +1,215 @@
 #platos y categorías (CRUD)
+codigo de ejemplo
+
+package com.sigr.menu;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MenuModule {
+
+    // =========================
+    // ENTIDAD PLATO
+    // =========================
+
+    static class Plato {
+
+        private Long id;
+        private String nombre;
+        private String descripcion;
+        private double precio;
+        private boolean disponible;
+        private String categoria;
+
+        public Plato(Long id, String nombre, String descripcion,
+                     double precio, boolean disponible, String categoria) {
+
+            this.id = id;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.precio = precio;
+            this.disponible = disponible;
+            this.categoria = categoria;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+
+        public void setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public double getPrecio() {
+            return precio;
+        }
+
+        public void setPrecio(double precio) {
+            this.precio = precio;
+        }
+
+        public boolean isDisponible() {
+            return disponible;
+        }
+
+        public void setDisponible(boolean disponible) {
+            this.disponible = disponible;
+        }
+
+        public String getCategoria() {
+            return categoria;
+        }
+
+        @Override
+        public String toString() {
+            return "Plato{" +
+                    "id=" + id +
+                    ", nombre='" + nombre + '\'' +
+                    ", descripcion='" + descripcion + '\'' +
+                    ", precio=" + precio +
+                    ", disponible=" + disponible +
+                    ", categoria='" + categoria + '\'' +
+                    '}';
+        }
+    }
+
+    // =========================
+    // CRUD MENU
+    // =========================
+
+    private List<Plato> platos = new ArrayList<>();
+
+    // Crear
+    public void agregarPlato(Plato plato) {
+        platos.add(plato);
+        System.out.println("Plato agregado correctamente");
+    }
+
+    // Consultar todos
+    public void listarPlatos() {
+
+        System.out.println("\n=== MENU DEL RESTAURANTE ===");
+
+        for (Plato plato : platos) {
+            System.out.println(plato);
+        }
+    }
+
+    // Buscar por ID
+    public Plato buscarPlato(Long id) {
+
+        for (Plato plato : platos) {
+
+            if (plato.getId().equals(id)) {
+                return plato;
+            }
+        }
+
+        return null;
+    }
+
+    // Actualizar
+    public void actualizarPrecio(Long id, double nuevoPrecio) {
+
+        Plato plato = buscarPlato(id);
+
+        if (plato != null) {
+
+            plato.setPrecio(nuevoPrecio);
+
+            System.out.println(
+                    "Precio actualizado para: "
+                            + plato.getNombre()
+            );
+        } else {
+            System.out.println("Plato no encontrado");
+        }
+    }
+
+    // Eliminar
+    public void eliminarPlato(Long id) {
+
+        Plato plato = buscarPlato(id);
+
+        if (plato != null) {
+
+            platos.remove(plato);
+
+            System.out.println(
+                    "Plato eliminado correctamente"
+            );
+
+        } else {
+
+            System.out.println(
+                    "No existe el plato solicitado"
+            );
+        }
+    }
+
+    // =========================
+    // MAIN DEMOSTRACION
+    // =========================
+
+    public static void main(String[] args) {
+
+        MenuModule menu = new MenuModule();
+
+        menu.agregarPlato(
+                new Plato(
+                        1L,
+                        "Hamburguesa Especial",
+                        "Carne artesanal con queso",
+                        25000,
+                        true,
+                        "Platos Fuertes"
+                )
+        );
+
+        menu.agregarPlato(
+                new Plato(
+                        2L,
+                        "Pizza Personal",
+                        "Pizza de pepperoni",
+                        28000,
+                        true,
+                        "Platos Fuertes"
+                )
+        );
+
+        menu.agregarPlato(
+                new Plato(
+                        3L,
+                        "Limonada Natural",
+                        "Bebida refrescante",
+                        8000,
+                        true,
+                        "Bebidas"
+                )
+        );
+
+        menu.listarPlatos();
+
+        System.out.println("\n=== ACTUALIZAR PRECIO ===");
+        menu.actualizarPrecio(1L, 27000);
+
+        menu.listarPlatos();
+
+        System.out.println("\n=== ELIMINAR PLATO ===");
+        menu.eliminarPlato(3L);
+
+        menu.listarPlatos();
+    }
+}

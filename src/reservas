@@ -1,1 +1,16 @@
 #reservas por fecha y hora
+codigo de ejemplo 
+@Service
+public class ReservaService {
+
+    @Autowired
+    private ReservaRepository reservaRepository;
+
+    public Reserva registrarReserva(Reserva reserva) {
+        return reservaRepository.save(reserva);
+    }
+
+    public List<Reserva> obtenerReservas() {
+        return reservaRepository.findAll();
+    }
+}

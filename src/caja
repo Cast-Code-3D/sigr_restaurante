@@ -1,1 +1,159 @@
 #cierre de caja y reportes diarios
+codigo de ejemplo
+
+package com.sigr.caja;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "cajas")
+public class Caja {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDate fecha;
+
+    private BigDecimal saldoInicial;
+
+    private BigDecimal totalIngresos;
+
+    private BigDecimal totalEgresos;
+
+    private BigDecimal saldoFinal;
+
+    private boolean cerrada;
+
+    public Caja() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public BigDecimal getSaldoInicial() {
+        return saldoInicial;
+    }
+
+    public void setSaldoInicial(BigDecimal saldoInicial) {
+        this.saldoInicial = saldoInicial;
+    }
+
+    public BigDecimal getTotalIngresos() {
+        return totalIngresos;
+    }
+
+    public void setTotalIngresos(BigDecimal totalIngresos) {
+        this.totalIngresos = totalIngresos;
+    }
+
+    public BigDecimal getTotalEgresos() {
+        return totalEgresos;
+    }
+
+    public void setTotalEgresos(BigDecimal totalEgresos) {
+        this.totalEgresos = totalEgresos;
+    }
+
+    public BigDecimal getSaldoFinal() {
+        return saldoFinal;
+    }
+
+    public void setSaldoFinal(BigDecimal saldoFinal) {
+        this.saldoFinal = saldoFinal;
+    }
+
+    public boolean isCerrada() {
+        return cerrada;
+    }
+
+    public void setCerrada(boolean cerrada) {
+        this.cerrada = cerrada;
+    }
+}
+
+
+package com.sigr.caja;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "movimientos_caja")
+public class MovimientoCaja {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String tipo;
+
+    private String descripcion;
+
+    private BigDecimal valor;
+
+    private LocalDateTime fechaHora;
+
+    @ManyToOne
+    @JoinColumn(name = "caja_id")
+    private Caja caja;
+
+    public MovimientoCaja() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public Caja getCaja() {
+        return caja;
+    }
+
+    public void setCaja(Caja caja) {
+        this.caja = caja;
+    }
+}
