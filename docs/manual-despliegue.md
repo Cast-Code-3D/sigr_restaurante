@@ -44,7 +44,7 @@ git --version
 4. Clonación del Repositorio
 Ejecutar:
 
-git clone https://github.com/equipoX/sigr.git
+git clone https://github.com/Cast-Code-3D/sigr_restaurante.git
 Ingresar al proyecto:
 
 cd sigr
@@ -156,9 +156,7 @@ v1.0
 Identificador:
 
 LB-SIGR-001
-Commit de referencia:
 
-a93b4f1
 Estado:
 
 Aprobado
