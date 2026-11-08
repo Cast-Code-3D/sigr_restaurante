@@ -15,23 +15,29 @@ Objetivo
 Automatizar las operaciones principales de un restaurante mediante una plataforma web centralizada.
 
 Módulos Incluidos en la Línea Base
-Gestión de Usuarios
+
+#Gestión de Usuarios
 Registro
 Inicio de sesión
 Roles
-Gestión de Menús
+
+#Gestión de Menús
 Crear platos
 Editar platos
 Eliminar platos
-Gestión de Pedidos
+
+#Gestión de Pedidos
 Registrar pedidos
 Seguimiento de estados
-Gestión de Reservas
+
+#Gestión de Reservas
 Reserva de mesas
 Consulta de disponibilidad
-Facturación
+
+#Facturación
 Generación de facturas
 Cierre de caja
 Reportes
-Ventas diarias
+
+#Ventas diarias
 Productos más vendidos
